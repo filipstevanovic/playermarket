@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: Player Market API
+  version: '1.0'
+servers:
+  - url: http://localhost:8081
+paths:
+  /team:
+    post:
+      operationId: createTeam
+      summary: Creates a team
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamRequest'
+      responses:
+        '200':
+          description: Team response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+        default:
+          $ref: '#/components/schemas/ApplicationError'
+  /team/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int64
+          required: true
+      operationId: getTeamDetails
+      summary: Returns team details
+
+      responses:
+        '200':
+          description: Team response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+        default:
+          $ref: '#/components/schemas/ApplicationError'
+    put:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int64
+          required: true
+      operationId: updateTeam
+      summary: Updates team data
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TeamRequest'
+      responses:
+        '200':
+          description: Team response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+        default:
+          $ref: '#/components/schemas/ApplicationError'
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int64
+          required: true
+      operationId: deleteTeam
+      summary: Removes a team
+      responses:
+        '200':
+          description: Team response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamResponse'
+        default:
+          $ref: '#/components/schemas/ApplicationError'
+
+components:
+  schemas:
+    TeamRequest:
+      properties:
+        name:
+          type: string
+        teamCommissionPercentage:
+          type: number
+    TeamResponse:
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        teamCommissionPercentage:
+          type: number
+    ApplicationError:
+      properties:
+        message:
+          type: string
+      required:
+        - message
