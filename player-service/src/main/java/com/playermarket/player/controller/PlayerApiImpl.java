@@ -1,6 +1,7 @@
 package com.playermarket.player.controller;
 
 import com.playermarket.player.exception.ExceptionHandler;
+import com.playermarket.player.model.PlayerOverview;
 import com.playermarket.player.model.PlayerRequest;
 import com.playermarket.player.model.PlayerResponse;
 import com.playermarket.player.service.PlayerService;
@@ -9,11 +10,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @Api("Set of endpoints for players REST service operations")
 public class PlayerApiImpl implements PlayerApi {
     @Autowired
     PlayerService playerService;
+
+    @Override
+    public ResponseEntity<List<PlayerOverview>> getPlayers() {
+        try {
+            List<PlayerOverview> response = playerService.getPlayers();
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ExceptionHandler.getException(e);
+        }
+    }
 
     @Override
     public ResponseEntity<PlayerResponse> createPlayer(PlayerRequest playerRequest) {

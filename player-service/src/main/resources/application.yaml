@@ -13,3 +13,6 @@ eureka:
       default-zone: http://localhost:8761/eureka
   instance:
     hostname: localhost
+
+transfer-service:
+  url: http://localhost:8083

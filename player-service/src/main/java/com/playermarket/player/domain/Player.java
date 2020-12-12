@@ -14,10 +14,10 @@ import java.time.LocalDate;
 public class Player {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    Long teamId;
-    String firstName;
-    String lastName;
-    LocalDate birthDate;
-    LocalDate careerStart;
+    private Long id;
+    private Long teamId;
+    private String firstName;
+    private String lastName;
+    private LocalDate birthDate;
+    private LocalDate careerStart;
 }

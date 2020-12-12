@@ -15,10 +15,10 @@ import java.time.LocalDate;
 public class Transfer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    Long playerId;
-    Long teamIdFrom;
-    Long teamIdTo;
-    BigDecimal transferFee;
-    LocalDate transactionDate;
+    private Long id;
+    private Long playerId;
+    private Long teamIdFrom;
+    private Long teamIdTo;
+    private BigDecimal transferFee;
+    private LocalDate transferDate;
 }

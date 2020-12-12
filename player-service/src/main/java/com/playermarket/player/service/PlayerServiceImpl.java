@@ -1,6 +1,7 @@
 package com.playermarket.player.service;
 
 import com.playermarket.player.domain.Player;
+import com.playermarket.player.model.PlayerOverview;
 import com.playermarket.player.model.PlayerRequest;
 import com.playermarket.player.model.PlayerResponse;
 import com.playermarket.player.exception.ServiceException;
@@ -10,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,6 +22,13 @@ public class PlayerServiceImpl implements PlayerService {
 
     @Autowired
     PlayerMapper playerMapper;
+
+    @Override
+    public List<PlayerOverview> getPlayers() {
+        List<Player> playerList = playerRepository.findAll();
+
+        return playerMapper.playerListToRestModel(playerList);
+    }
 
     @Override
     public PlayerResponse createPlayer(PlayerRequest playerRequest) {

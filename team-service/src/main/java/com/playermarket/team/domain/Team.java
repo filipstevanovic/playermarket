@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
-    String name;
-    BigDecimal teamCommissionPercentage;
+    private Long id;
+    private String name;
+    private BigDecimal teamCommissionPercentage;
 }

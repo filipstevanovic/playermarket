@@ -15,8 +15,7 @@ public class TeamAdapter {
     @Autowired
     RestTemplate restTemplate;
 
-    public ResponseEntity<Team> getTeam(Long id) {
-        ResponseEntity<Team> response = restTemplate.getForEntity(teamService + "/team/" + id, Team.class);
-        return response;
+    public ResponseEntity<Team> getTeam(Long teamId) {
+        return restTemplate.getForEntity(teamService + "/team/" + teamId, Team.class);
     }
 }

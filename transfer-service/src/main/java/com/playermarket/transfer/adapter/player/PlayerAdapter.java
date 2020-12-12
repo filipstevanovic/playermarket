@@ -23,4 +23,8 @@ public class PlayerAdapter {
 
         restTemplate.put(playerService + "/player/" + playerId, request, Player.class);
     }
+
+    public ResponseEntity<Player> getPlayer(Long playerId) {
+        return restTemplate.getForEntity(playerService + "/player/" + playerId, Player.class);
+    }
 }

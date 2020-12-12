@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Team {
-    Long id;
-    String name;
-    BigDecimal teamCommissionPercentage;
+    private Long id;
+    private String name;
+    private BigDecimal teamCommissionPercentage;
 }

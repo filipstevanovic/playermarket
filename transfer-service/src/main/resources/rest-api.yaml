@@ -43,6 +43,28 @@ paths:
                 $ref: '#/components/schemas/TransferResponse'
         default:
           $ref: '#/components/schemas/ApplicationError'
+  /transfer/player/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            format: int64
+          required: true
+      operationId: getPlayerTransfers
+      summary: Returns Player Transfers
+      responses:
+        '200':
+          description: Transfer details
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlayerTransferResponse'
+        default:
+          $ref: '#/components/schemas/ApplicationError'
 
 components:
   schemas:
@@ -57,6 +79,9 @@ components:
         teamIdTo:
           type: integer
           format: int64
+        transferDate:
+          type: string
+          format: date
     TransferResponse:
       properties:
         id:
@@ -73,7 +98,17 @@ components:
           format: int64
         transferFee:
           type: number
-        transactionDate:
+        transferDate:
+          type: string
+          format: date
+    PlayerTransferResponse:
+      properties:
+        teamId:
+          type: integer
+          format: int64
+        teamName:
+          type: string
+        transferDate:
           type: string
           format: date
     ApplicationError:
